@@ -1,8 +1,11 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - about.qmd
 
 website:
-  title: "census mapping"
+  title: "Census Data Explorer"
   navbar:
     left:
       - href: index.qmd
@@ -16,6 +19,3 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-

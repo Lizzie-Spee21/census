@@ -1,7 +1,5 @@
 ---
-title: "census mapping"
+title: "Census Data Explorer"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This website is being set up. A first example exploring race and ethnicity in Sarasota County will be added next.

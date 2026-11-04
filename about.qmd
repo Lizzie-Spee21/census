@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+This site will explore U.S. Census data.

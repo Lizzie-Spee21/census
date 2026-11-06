@@ -34,3 +34,25 @@ ggplot(sarasota_map) +
   theme_void()
 ```
 
+## Median Household Income
+
+This map shades each census tract by its median household income (`median_income`), formatted in dollars.
+
+```{r}
+#| message: false
+#| warning: false
+
+# Plot a choropleth map shaded by median household income
+ggplot(sarasota_map) +
+  geom_sf(aes(fill = median_income), color = "white", linewidth = 0.2) +
+  scale_fill_viridis_c(option = "viridis", labels = scales::label_dollar()) +
+  labs(
+    title = "Highest-Income Areas in Sarasota County, FL",
+    subtitle = "Median household income by census tract (2023 ACS 5-Year Estimates)",
+    fill = "Median Income",
+    caption = "Source: U.S. Census Bureau, American Community Survey (Table B19013)"
+  ) +
+  theme_void()
+```
+
+

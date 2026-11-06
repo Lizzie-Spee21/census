@@ -2,4 +2,35 @@
 title: "Census Data Explorer"
 ---
 
-This website is being set up. A first example exploring race and ethnicity in Sarasota County will be added next.
+This map shows total population across census tracts in Sarasota County, Florida, using 2023 American Community Survey (5-year) data.
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tigris)
+library(sf)
+
+options(tigris_use_cache = TRUE)
+
+# Read the Sarasota County census tract population data
+sarasota_pop <- read_csv("data/sarasota_tracts_acs2023.csv")
+
+# Load the 2023 census tract boundaries and join population counts
+sarasota_map <- tracts(state = "FL", county = "Sarasota", year = 2023, cb = TRUE, progress_bar = FALSE) |>
+  left_join(sarasota_pop, by = c("GEOIDFQ" = "GEO_ID"))
+
+# Plot a choropleth map shaded by total population
+ggplot(sarasota_map) +
+  geom_sf(aes(fill = total), color = "white", linewidth = 0.2) +
+  scale_fill_viridis_c(option = "plasma", labels = scales::label_comma()) +
+  labs(
+    title = "Where People Live in Sarasota County, FL",
+    subtitle = "Total population by census tract (2023 ACS 5-Year Estimates)",
+    fill = "Population",
+    caption = "Source: U.S. Census Bureau, American Community Survey"
+  ) +
+  theme_void()
+```
+
